@@ -14,16 +14,14 @@ import java.util.Objects;
 public class NotificationResponse {
     private final String message;
     private final String status;
-
+    private final Long notificationId;
+    private final double remainingQuota;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private final LocalDateTime timestamp;
 
-    private final String notificationId;
-    private final double remainingQuota;
-
     public static NotificationResponse success(String message, LocalDateTime timestamp,
-                                               String notificationId, double remainingQuota) {
-        return new NotificationResponse(message, "SUCCESS", timestamp, notificationId, remainingQuota);
+                                               Long notificationId, double remainingQuota) {
+        return new NotificationResponse(message, "SUCCESS", notificationId, remainingQuota, timestamp);
     }
 
     @Override

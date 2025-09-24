@@ -1,6 +1,7 @@
 package com.modak.tc.exceptions;
 
 import jakarta.servlet.http.HttpServletRequest;
+import org.apache.coyote.BadRequestException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -41,6 +42,19 @@ public class GlobalExceptionHandler {
         ErrorResponse error = ErrorResponse.create(ex,
                 HttpStatusCode.valueOf(404),
                 LocalDateTime.now() + " RULE_NOT_FOUND " + ex.getMessage()
+        );
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(error);
+    }
+
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity<ErrorResponse> handleBadRequestException(
+            BadRequestException ex, HttpServletRequest request) {
+
+        ErrorResponse error = ErrorResponse.create(ex,
+                HttpStatusCode.valueOf(400),
+                LocalDateTime.now() + " BAD_REQUEST " + ex.getMessage()
         );
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND)

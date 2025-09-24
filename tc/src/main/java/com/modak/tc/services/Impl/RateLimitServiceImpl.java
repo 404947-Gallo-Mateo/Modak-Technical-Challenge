@@ -63,7 +63,7 @@ public class RateLimitServiceImpl implements RateLimitService {
     public int getRetryAfterSeconds(NotificationType type, String userId) {
         Map<NotificationType, TokenBucket> buckets = userBuckets.get(userId);
         if (buckets != null && buckets.containsKey(type)) {
-            return (int) Math.round(buckets.get(type).getTimeToNextToken() + 1);
+            return (int) Math.round(buckets.get(type).getTimeToNextToken());
         }
         return 60;
     }

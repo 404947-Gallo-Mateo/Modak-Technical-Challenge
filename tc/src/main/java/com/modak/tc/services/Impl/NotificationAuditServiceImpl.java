@@ -10,7 +10,9 @@ import com.modak.tc.services.NotificationAuditService;
 import com.modak.tc.services.NotificationService;
 import lombok.AllArgsConstructor;
 import org.apache.catalina.mapper.Mapper;
+import org.apache.coyote.BadRequestException;
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -18,14 +20,13 @@ import java.util.List;
 import java.util.Map;
 
 @AllArgsConstructor
+@Service
 public class NotificationAuditServiceImpl implements NotificationAuditService {
 
     private final NotificationAuditRepository notificationAuditRepository;
     private final ModelMapper mapper;
     @Override
     public List<NotificationAuditDTO> getAllByUserId(String userId) {
-        //todo agregar verificaciones
-
         List<NotificationAuditDTO> notificationAuditDTOS = new ArrayList<>();
         List<NotificationAuditEntity> notificationAuditEntities = notificationAuditRepository.findByUserId(userId);
 
@@ -85,7 +86,9 @@ public class NotificationAuditServiceImpl implements NotificationAuditService {
     }
 
     @Override
-    public List<NotificationAuditDTO> getAllNotificationsByUserTypeAndDateRange(String userId, NotificationType type, LocalDateTime startDate, LocalDateTime endDate) {
+    public List<NotificationAuditDTO> getAllNotificationsByUserTypeAndDateRange(String userId, NotificationType type, LocalDateTime startDate, LocalDateTime endDate) throws BadRequestException {
+        ValidateStartAndEndDate(startDate, endDate);
+
         List<NotificationAuditDTO> notificationAuditDTOS = new ArrayList<>();
         List<NotificationAuditEntity> notificationAuditEntities = notificationAuditRepository.findNotificationsByUserTypeAndDateRange(userId, type, startDate, endDate);
 
@@ -97,7 +100,9 @@ public class NotificationAuditServiceImpl implements NotificationAuditService {
     }
 
     @Override
-    public List<NotificationAuditDTO> getAllNotificationsByUserAndDateRange(String userId, LocalDateTime startDate, LocalDateTime endDate) {
+    public List<NotificationAuditDTO> getAllNotificationsByUserAndDateRange(String userId, LocalDateTime startDate, LocalDateTime endDate) throws BadRequestException {
+        ValidateStartAndEndDate(startDate, endDate);
+
         List<NotificationAuditDTO> notificationAuditDTOS = new ArrayList<>();
         List<NotificationAuditEntity> notificationAuditEntities = notificationAuditRepository.findNotificationsByUserAndDateRange(userId, startDate, endDate);
 
@@ -109,7 +114,9 @@ public class NotificationAuditServiceImpl implements NotificationAuditService {
     }
 
     @Override
-    public List<NotificationAuditDTO> getAllNotificationsByTypeAndDateRange(NotificationType type, LocalDateTime startDate, LocalDateTime endDate) {
+    public List<NotificationAuditDTO> getAllNotificationsByTypeAndDateRange(NotificationType type, LocalDateTime startDate, LocalDateTime endDate) throws BadRequestException {
+        ValidateStartAndEndDate(startDate, endDate);
+
         List<NotificationAuditDTO> notificationAuditDTOS = new ArrayList<>();
         List<NotificationAuditEntity> notificationAuditEntities = notificationAuditRepository.findNotificationsByTypeAndDateRange(type, startDate, endDate);
 
@@ -118,5 +125,11 @@ public class NotificationAuditServiceImpl implements NotificationAuditService {
         }
 
         return notificationAuditDTOS;
+    }
+
+    private void ValidateStartAndEndDate(LocalDateTime startDate, LocalDateTime endDate) throws BadRequestException {
+        if (endDate.isBefore(startDate)){
+            throw new BadRequestException("endDate cannot be before startDate");
+        }
     }
 }

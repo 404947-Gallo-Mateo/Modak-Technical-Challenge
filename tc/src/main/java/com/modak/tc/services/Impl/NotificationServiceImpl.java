@@ -38,6 +38,7 @@ public class NotificationServiceImpl implements NotificationService {
                    notificationAudit.setUserId(request.userId());
                    notificationAudit.setMessage(request.message());
                    notificationAudit.setCreatedAt(LocalDateTime.now());
+                   notificationAudit.setStatus("SUCCESS");
 
             NotificationAuditEntity savedNotification = repository.save(notificationAudit);
 
@@ -46,7 +47,7 @@ public class NotificationServiceImpl implements NotificationService {
             return NotificationResponse.success(
                     "Notification sent successfully",
                     LocalDateTime.now(),
-                    savedNotification.getId().toString(),
+                    savedNotification.getId(),
                     remainingQuota
             );
 

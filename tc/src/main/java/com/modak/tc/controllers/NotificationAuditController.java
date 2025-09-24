@@ -4,6 +4,7 @@ import com.modak.tc.models.DTOs.NotificationAuditDTO;
 import com.modak.tc.models.enums.NotificationType;
 import com.modak.tc.services.NotificationAuditService;
 import lombok.AllArgsConstructor;
+import org.apache.coyote.BadRequestException;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -55,7 +56,7 @@ public class NotificationAuditController {
             @RequestParam(required = false) String userId,
             @RequestParam(required = false) NotificationType type,
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
-            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate) {
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate) throws BadRequestException {
 
         if (userId != null && type != null && startDate != null && endDate != null) {
             return ResponseEntity.ok(auditService.getAllNotificationsByUserTypeAndDateRange(userId, type, startDate, endDate));
