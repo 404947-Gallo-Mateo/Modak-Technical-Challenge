@@ -1,7 +1,7 @@
 package com.modak.tc.models.enums;
 
 import com.modak.tc.config.RateLimitConfig;
-import com.modak.tc.config.RateLimitRule;
+import com.modak.tc.models.RateLimitRule;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

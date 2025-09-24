@@ -1,5 +1,6 @@
 package com.modak.tc.config;
 
+import com.modak.tc.models.RateLimitRule;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;

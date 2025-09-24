@@ -1,4 +1,4 @@
-package com.modak.tc.config;
+package com.modak.tc.models;
 
 import lombok.Data;
 

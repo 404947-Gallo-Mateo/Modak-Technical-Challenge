@@ -1,7 +1,7 @@
 package com.modak.tc.services.Impl;
 
 import com.modak.tc.config.RateLimitConfig;
-import com.modak.tc.config.RateLimitRule;
+import com.modak.tc.models.RateLimitRule;
 import com.modak.tc.exceptions.RuleNotFoundException;
 import com.modak.tc.models.TokenBucket;
 import com.modak.tc.models.enums.NotificationType;

@@ -1,7 +1,5 @@
 package com.modak.tc.services;
 
-import com.modak.tc.config.RateLimitRule;
-import com.modak.tc.models.TokenBucket;
 import com.modak.tc.models.enums.NotificationType;
 
 import java.util.Map;

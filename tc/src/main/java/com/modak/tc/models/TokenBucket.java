@@ -1,6 +1,5 @@
 package com.modak.tc.models;
 
-import com.modak.tc.config.RateLimitRule;
 import lombok.Getter;
 
 import java.time.Instant;
