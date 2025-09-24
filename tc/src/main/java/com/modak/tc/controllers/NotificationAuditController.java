@@ -55,8 +55,8 @@ public class NotificationAuditController {
     public ResponseEntity<List<NotificationAuditDTO>> searchNotifications(
             @RequestParam(required = false) String userId,
             @RequestParam(required = false) NotificationType type,
-            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
-            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate) throws BadRequestException {
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate) throws BadRequestException {
 
         if (userId != null && type != null && startDate != null && endDate != null) {
             return ResponseEntity.ok(auditService.getAllNotificationsByUserTypeAndDateRange(userId, type, startDate, endDate));

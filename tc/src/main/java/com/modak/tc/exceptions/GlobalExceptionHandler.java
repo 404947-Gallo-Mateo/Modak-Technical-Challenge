@@ -6,6 +6,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -48,9 +49,36 @@ public class GlobalExceptionHandler {
                 .body(error);
     }
 
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<ErrorResponse> handleHttpMessageNotReadableException(
+            HttpMessageNotReadableException ex, HttpServletRequest request) {
+
+        ErrorResponse error = ErrorResponse.create(ex,
+                HttpStatusCode.valueOf(400),
+                LocalDateTime.now() + " CANNOT_DESERIALIZE_VALUE " + ex.getMessage()
+        );
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(error);
+    }
+
     @ExceptionHandler(BadRequestException.class)
     public ResponseEntity<ErrorResponse> handleBadRequestException(
             BadRequestException ex, HttpServletRequest request) {
+
+        ErrorResponse error = ErrorResponse.create(ex,
+                HttpStatusCode.valueOf(400),
+                LocalDateTime.now() + " BAD_REQUEST " + ex.getMessage()
+        );
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(error);
+    }
+
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<ErrorResponse> handleIllegalArgumentException(
+            IllegalArgumentException ex, HttpServletRequest request) {
 
         ErrorResponse error = ErrorResponse.create(ex,
                 HttpStatusCode.valueOf(400),
