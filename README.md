@@ -11,8 +11,9 @@ notification to be sent only if there are enough tokens available; otherwise, it
 This algorithm only generates tokens when the bucket is not full, precisely calculates the waiting time, is easy to 
 configure in terms of limits and time periods, and works in a thread-safe manner using StampedLock.
 
+Try it! Execute the project and go to http://localhost:8080/swagger-ui.html  
+
 Check the Postman Collection 'Modak Rate Limit Challenge.postman_collection.json' at \tc\src\main\resources
-Try it! Execute the project and go to http://localhost:8080/swagger-ui.html
 
 --------
 
