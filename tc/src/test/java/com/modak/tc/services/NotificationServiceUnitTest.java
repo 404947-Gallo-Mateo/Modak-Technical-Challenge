@@ -23,7 +23,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class NotificationServiceTest {
+public class NotificationServiceUnitTest {
     @InjectMocks
     private NotificationServiceImpl notificationService;
     @Mock

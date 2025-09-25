@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class RateLimitServiceImplTest {
+public class RateLimitServiceUnitTest {
     @InjectMocks
     private RateLimitServiceImpl rateLimitService;
     @Mock

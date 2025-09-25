@@ -3,6 +3,7 @@ package com.modak.tc.models.entities;
 import com.modak.tc.models.enums.NotificationType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "notifications_audit")
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
