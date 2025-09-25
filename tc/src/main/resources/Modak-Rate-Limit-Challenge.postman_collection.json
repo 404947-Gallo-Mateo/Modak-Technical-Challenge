@@ -1,0 +1,1070 @@
+{
+	"info": {
+		"_postman_id": "b8e37036-08eb-466f-af7b-3c7d6d965a0c",
+		"name": "Modak Rate Limit Challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31702600"
+	},
+	"item": [
+		{
+			"name": "/api/notifications/send",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"type\": \"STATUS\",\r\n   \"userId\": \"user123\",\r\n   \"message\": \"Your delivery its on its way!\"\r\n   }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/notifications/send",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"notifications",
+						"send"
+					]
+				},
+				"description": "Generated from cURL: curl -X POST \"http://localhost:8080/api/notifications/send\" \r\n   -H \"Content-Type: application/json\" \r\n   -d '{\r\n   \"type\": \"STATUS\",\r\n   \"userId\": \"user123\",\r\n   \"message\": \"Your delivery its on its way!\"\r\n   }'"
+			},
+			"response": [
+				{
+					"name": "success / type: STATUS",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"type\": \"STATUS\",\r\n   \"userId\": \"user123\",\r\n   \"message\": \"Your delivery its on its way!\"\r\n   }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/notifications/send",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"notifications",
+								"send"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 Sep 2025 17:13:58 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Notification sent successfully\",\n    \"status\": \"SUCCESS\",\n    \"notificationId\": 3,\n    \"remainingQuota\": 1,\n    \"timestamp\": \"2025-09-25 14:13:58\"\n}"
+				},
+				{
+					"name": "failure - TOO_MANY_REQUESTS / type: STATUS",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"type\": \"STATUS\",\r\n   \"userId\": \"user123\",\r\n   \"message\": \"Your delivery its on its way!\"\r\n   }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/notifications/send",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"notifications",
+								"send"
+							]
+						}
+					},
+					"status": "Too Many Requests",
+					"code": 429,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Retry-After",
+							"value": "10"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 Sep 2025 17:14:18 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": \"TOO_MANY_REQUESTS\",\n    \"headers\": {},\n    \"typeMessageCode\": \"problemDetail.type.com.modak.tc.exceptions.RateLimitExceededException\",\n    \"titleMessageCode\": \"problemDetail.title.com.modak.tc.exceptions.RateLimitExceededException\",\n    \"detailMessageCode\": \"problemDetail.com.modak.tc.exceptions.RateLimitExceededException\",\n    \"detailMessageArguments\": null,\n    \"body\": {\n        \"type\": \"about:blank\",\n        \"title\": \"Too Many Requests\",\n        \"status\": 429,\n        \"detail\": \"2025-09-25T14:14:18.169008600 RATE_LIMIT_EXCEEDED for type: STATUS and user: user123 / retry after 10 seconds.\",\n        \"instance\": null,\n        \"properties\": null\n    }\n}"
+				},
+				{
+					"name": "failure - NotificationType doesnt exist / type: nonexistant",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"type\": \"nonexistant\",\r\n   \"userId\": \"user123\",\r\n   \"message\": \"Your delivery its on its way!\"\r\n   }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/notifications/send",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"notifications",
+								"send"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 Sep 2025 17:18:11 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": \"BAD_REQUEST\",\n    \"headers\": {},\n    \"typeMessageCode\": \"problemDetail.type.org.springframework.http.converter.HttpMessageNotReadableException\",\n    \"titleMessageCode\": \"problemDetail.title.org.springframework.http.converter.HttpMessageNotReadableException\",\n    \"detailMessageCode\": \"problemDetail.org.springframework.http.converter.HttpMessageNotReadableException\",\n    \"detailMessageArguments\": null,\n    \"body\": {\n        \"type\": \"about:blank\",\n        \"title\": \"Bad Request\",\n        \"status\": 400,\n        \"detail\": \"2025-09-25T14:18:11.911519100 CANNOT_DESERIALIZE_VALUE JSON parse error: Cannot deserialize value of type `com.modak.tc.models.enums.NotificationType` from String \\\"nonexistant\\\": not one of the values accepted for Enum class: [URGENT, STATUS, NEWS, MARKETING, QUARTER_REPORT, WEEKLY_REPORT]\",\n        \"instance\": null,\n        \"properties\": null\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "api/notifications/rate-limit-status/user123",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/notifications/rate-limit-status/user123",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"notifications",
+						"rate-limit-status",
+						"user123"
+					]
+				},
+				"description": "Generated from cURL: curl -X GET \"http://localhost:8080/api/notifications/rate-limit-status/user123\" \r\n    -H \"Content-Type: application/json\""
+			},
+			"response": [
+				{
+					"name": "success - Get Rate Limit by User ID",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/notifications/rate-limit-status/user123",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"notifications",
+								"rate-limit-status",
+								"user123"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 Sep 2025 17:16:13 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"URGENT\": 10,\n    \"NEWS\": 0,\n    \"STATUS\": 2\n}"
+				}
+			]
+		},
+		{
+			"name": "api/audit/notifications/user/user123",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/audit/notifications/user/user123",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"audit",
+						"notifications",
+						"user",
+						"user123"
+					]
+				},
+				"description": "Generated from cURL: curl -X GET \"http://localhost:8080/api/audit/notifications/user/user123\" \r\n   -H \"Content-Type: application/json\""
+			},
+			"response": [
+				{
+					"name": "success - Get Notifications by User ID",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/audit/notifications/user/user123",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"audit",
+								"notifications",
+								"user",
+								"user123"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 Sep 2025 17:19:39 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"type\": \"STATUS\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            12,\n            49,\n            984135000\n        ],\n        \"status\": \"SUCCESS\"\n    },\n    {\n        \"type\": \"STATUS\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            12,\n            54,\n            633672000\n        ],\n        \"status\": \"SUCCESS\"\n    },\n    {\n        \"type\": \"STATUS\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            13,\n            58,\n            544804000\n        ],\n        \"status\": \"SUCCESS\"\n    },\n    {\n        \"type\": \"STATUS\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            14,\n            16,\n            933046000\n        ],\n        \"status\": \"SUCCESS\"\n    },\n    {\n        \"type\": \"NEWS\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            15,\n            4,\n            509463000\n        ],\n        \"status\": \"SUCCESS\"\n    },\n    {\n        \"type\": \"URGENT\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            15,\n            13,\n            866446000\n        ],\n        \"status\": \"SUCCESS\"\n    },\n    {\n        \"type\": \"URGENT\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            15,\n            16,\n            118534000\n        ],\n        \"status\": \"SUCCESS\"\n    },\n    {\n        \"type\": \"URGENT\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            15,\n            17,\n            601292000\n        ],\n        \"status\": \"SUCCESS\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "api/audit/notifications/type/STATUS",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/audit/notifications/type/STATUS",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"audit",
+						"notifications",
+						"type",
+						"STATUS"
+					]
+				},
+				"description": "Generated from cURL:     curl -X GET \"http://localhost:8080/api/audit/notifications/type/STATUS\" \r\n    -H \"Content-Type: application/json\""
+			},
+			"response": [
+				{
+					"name": "success - Get Notifications by Notification Type",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/audit/notifications/type/STATUS",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"audit",
+								"notifications",
+								"type",
+								"STATUS"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 Sep 2025 17:20:20 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"type\": \"STATUS\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            12,\n            49,\n            984135000\n        ],\n        \"status\": \"SUCCESS\"\n    },\n    {\n        \"type\": \"STATUS\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            12,\n            54,\n            633672000\n        ],\n        \"status\": \"SUCCESS\"\n    },\n    {\n        \"type\": \"STATUS\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            13,\n            58,\n            544804000\n        ],\n        \"status\": \"SUCCESS\"\n    },\n    {\n        \"type\": \"STATUS\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            14,\n            16,\n            933046000\n        ],\n        \"status\": \"SUCCESS\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "api/audit/notifications/user/user123/type/NEWS",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/audit/notifications/user/user123/type/NEWS",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"audit",
+						"notifications",
+						"user",
+						"user123",
+						"type",
+						"NEWS"
+					]
+				},
+				"description": "Generated from cURL: curl -X GET \"http://localhost:8080/api/audit/notifications/user/user123/type/NEWS\" \r\n    -H \"Content-Type: application/json\"\r\n"
+			},
+			"response": [
+				{
+					"name": "success - Get Notifications by User ID AND Notification Type",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/audit/notifications/user/user123/type/NEWS",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"audit",
+								"notifications",
+								"user",
+								"user123",
+								"type",
+								"NEWS"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 Sep 2025 17:22:16 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"type\": \"NEWS\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            15,\n            4,\n            509463000\n        ],\n        \"status\": \"SUCCESS\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "api/audit/notifications/user/user123/after?after=2025-01-15T00:00:00",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/audit/notifications/user/user123/after?after=2025-01-15T00:00:00",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"audit",
+						"notifications",
+						"user",
+						"user123",
+						"after"
+					],
+					"query": [
+						{
+							"key": "after",
+							"value": "2025-01-15T00:00:00"
+						}
+					]
+				},
+				"description": "Generated from cURL:     curl -X GET \"http://localhost:8080/api/audit/notifications/user/user123/after?after=2025-01-15T00:00:00\" \r\n    -H \"Content-Type: application/json\""
+			},
+			"response": [
+				{
+					"name": "success - Get Notificaions by User ID AND after Datetime",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}api/audit/notifications/user/user123/after?after=2025-01-15T00:00:00",
+							"host": [
+								"{{baseUrl}}api"
+							],
+							"path": [
+								"audit",
+								"notifications",
+								"user",
+								"user123",
+								"after"
+							],
+							"query": [
+								{
+									"key": "after",
+									"value": "2025-01-15T00:00:00"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 Sep 2025 17:25:27 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"type\": \"STATUS\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            12,\n            49,\n            984135000\n        ],\n        \"status\": \"SUCCESS\"\n    },\n    {\n        \"type\": \"STATUS\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            12,\n            54,\n            633672000\n        ],\n        \"status\": \"SUCCESS\"\n    },\n    {\n        \"type\": \"STATUS\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            13,\n            58,\n            544804000\n        ],\n        \"status\": \"SUCCESS\"\n    },\n    {\n        \"type\": \"STATUS\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            14,\n            16,\n            933046000\n        ],\n        \"status\": \"SUCCESS\"\n    },\n    {\n        \"type\": \"NEWS\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            15,\n            4,\n            509463000\n        ],\n        \"status\": \"SUCCESS\"\n    },\n    {\n        \"type\": \"URGENT\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            15,\n            13,\n            866446000\n        ],\n        \"status\": \"SUCCESS\"\n    },\n    {\n        \"type\": \"URGENT\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            15,\n            16,\n            118534000\n        ],\n        \"status\": \"SUCCESS\"\n    },\n    {\n        \"type\": \"URGENT\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            15,\n            17,\n            601292000\n        ],\n        \"status\": \"SUCCESS\"\n    },\n    {\n        \"type\": \"STATUS\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            24,\n            13,\n            970405000\n        ],\n        \"status\": \"SUCCESS\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "api/audit/notifications/status/SUCCESS",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/audit/notifications/status/SUCCESS",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"audit",
+						"notifications",
+						"status",
+						"SUCCESS"
+					]
+				},
+				"description": "Generated from cURL:     curl -X GET \"http://localhost:8080/api/audit/notifications/status/SUCCESS\" \r\n    -H \"Content-Type: application/json\""
+			},
+			"response": [
+				{
+					"name": "success - Get Notifications by Status",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}api/audit/notifications/status/SUCCESS",
+							"host": [
+								"{{baseUrl}}api"
+							],
+							"path": [
+								"audit",
+								"notifications",
+								"status",
+								"SUCCESS"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 Sep 2025 17:26:15 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"type\": \"STATUS\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            12,\n            49,\n            984135000\n        ],\n        \"status\": \"SUCCESS\"\n    },\n    {\n        \"type\": \"STATUS\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            12,\n            54,\n            633672000\n        ],\n        \"status\": \"SUCCESS\"\n    },\n    {\n        \"type\": \"STATUS\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            13,\n            58,\n            544804000\n        ],\n        \"status\": \"SUCCESS\"\n    },\n    {\n        \"type\": \"STATUS\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            14,\n            16,\n            933046000\n        ],\n        \"status\": \"SUCCESS\"\n    },\n    {\n        \"type\": \"NEWS\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            15,\n            4,\n            509463000\n        ],\n        \"status\": \"SUCCESS\"\n    },\n    {\n        \"type\": \"URGENT\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            15,\n            13,\n            866446000\n        ],\n        \"status\": \"SUCCESS\"\n    },\n    {\n        \"type\": \"URGENT\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            15,\n            16,\n            118534000\n        ],\n        \"status\": \"SUCCESS\"\n    },\n    {\n        \"type\": \"URGENT\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            15,\n            17,\n            601292000\n        ],\n        \"status\": \"SUCCESS\"\n    },\n    {\n        \"type\": \"STATUS\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            24,\n            13,\n            970405000\n        ],\n        \"status\": \"SUCCESS\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "api/audit/notifications/search?userId=user123&type=STATUS&startDate=2025-01-15T00:00:00&endDate=2026-01-15T23:59:59",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/audit/notifications/search?userId=user123&type=STATUS&startDate=2025-01-15T00:00:00&endDate=2026-01-15T23:59:59",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"audit",
+						"notifications",
+						"search"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "user123"
+						},
+						{
+							"key": "type",
+							"value": "STATUS"
+						},
+						{
+							"key": "startDate",
+							"value": "2025-01-15T00:00:00"
+						},
+						{
+							"key": "endDate",
+							"value": "2026-01-15T23:59:59"
+						}
+					]
+				},
+				"description": "Generated from cURL:     curl -X GET \"http://localhost:8080/api/audit/notifications/search?userId=user123&type=STATUS&startDate=2025-01-15T00:00:00&endDate=2026-01-15T23:59:59\" "
+			},
+			"response": [
+				{
+					"name": "success  - Get Notifications by User ID, Notification Type and Between Dates (startDate and endDate)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}api/audit/notifications/search?userId=user123&type=STATUS&startDate=2025-01-15T00:00:00&endDate=2026-01-15T23:59:59",
+							"host": [
+								"{{baseUrl}}api"
+							],
+							"path": [
+								"audit",
+								"notifications",
+								"search"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "user123"
+								},
+								{
+									"key": "type",
+									"value": "STATUS"
+								},
+								{
+									"key": "startDate",
+									"value": "2025-01-15T00:00:00"
+								},
+								{
+									"key": "endDate",
+									"value": "2026-01-15T23:59:59"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 Sep 2025 17:27:06 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"type\": \"STATUS\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            24,\n            13,\n            970405000\n        ],\n        \"status\": \"SUCCESS\"\n    },\n    {\n        \"type\": \"STATUS\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            14,\n            16,\n            933046000\n        ],\n        \"status\": \"SUCCESS\"\n    },\n    {\n        \"type\": \"STATUS\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            13,\n            58,\n            544804000\n        ],\n        \"status\": \"SUCCESS\"\n    },\n    {\n        \"type\": \"STATUS\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            12,\n            54,\n            633672000\n        ],\n        \"status\": \"SUCCESS\"\n    },\n    {\n        \"type\": \"STATUS\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            12,\n            49,\n            984135000\n        ],\n        \"status\": \"SUCCESS\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "api/audit/notifications/search?userId=user123&startDate=2025-01-15T00:00:00&endDate=2026-01-15T23:59:59",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/audit/notifications/search?userId=user123&startDate=2025-01-15T00:00:00&endDate=2026-01-15T23:59:59",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"audit",
+						"notifications",
+						"search"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "user123"
+						},
+						{
+							"key": "startDate",
+							"value": "2025-01-15T00:00:00"
+						},
+						{
+							"key": "endDate",
+							"value": "2026-01-15T23:59:59"
+						}
+					]
+				},
+				"description": "Generated from cURL:     curl -X GET \"http://localhost:8080/api/audit/notifications/search?userId=user123&startDate=2025-01-15T00:00:00&endDate=2026-01-15T23:59:59\" \r\n    -H \"Content-Type: application/json\""
+			},
+			"response": [
+				{
+					"name": "- Get Notifications by User ID, and Between Dates (startDate and endDate)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}api/audit/notifications/search?userId=user123&startDate=2025-01-15T00:00:00&endDate=2026-01-15T23:59:59",
+							"host": [
+								"{{baseUrl}}api"
+							],
+							"path": [
+								"audit",
+								"notifications",
+								"search"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "user123"
+								},
+								{
+									"key": "startDate",
+									"value": "2025-01-15T00:00:00"
+								},
+								{
+									"key": "endDate",
+									"value": "2026-01-15T23:59:59"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 Sep 2025 17:27:54 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"type\": \"STATUS\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            24,\n            13,\n            970405000\n        ],\n        \"status\": \"SUCCESS\"\n    },\n    {\n        \"type\": \"URGENT\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            15,\n            17,\n            601292000\n        ],\n        \"status\": \"SUCCESS\"\n    },\n    {\n        \"type\": \"URGENT\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            15,\n            16,\n            118534000\n        ],\n        \"status\": \"SUCCESS\"\n    },\n    {\n        \"type\": \"URGENT\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            15,\n            13,\n            866446000\n        ],\n        \"status\": \"SUCCESS\"\n    },\n    {\n        \"type\": \"NEWS\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            15,\n            4,\n            509463000\n        ],\n        \"status\": \"SUCCESS\"\n    },\n    {\n        \"type\": \"STATUS\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            14,\n            16,\n            933046000\n        ],\n        \"status\": \"SUCCESS\"\n    },\n    {\n        \"type\": \"STATUS\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            13,\n            58,\n            544804000\n        ],\n        \"status\": \"SUCCESS\"\n    },\n    {\n        \"type\": \"STATUS\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            12,\n            54,\n            633672000\n        ],\n        \"status\": \"SUCCESS\"\n    },\n    {\n        \"type\": \"STATUS\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            12,\n            49,\n            984135000\n        ],\n        \"status\": \"SUCCESS\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "api/audit/notifications/search?type=MARKETING&startDate=2025-01-01T00:00:00&endDate=2026-01-31T23:59:59",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/audit/notifications/search?type=MARKETING&startDate=2025-01-01T00:00:00&endDate=2026-01-31T23:59:59",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"audit",
+						"notifications",
+						"search"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "MARKETING"
+						},
+						{
+							"key": "startDate",
+							"value": "2025-01-01T00:00:00"
+						},
+						{
+							"key": "endDate",
+							"value": "2026-01-31T23:59:59"
+						}
+					]
+				},
+				"description": "Generated from cURL:     curl -X GET \"http://localhost:8080/api/audit/notifications/search?type=MARKETING&startDate=2025-01-01T00:00:00&endDate=2026-01-31T23:59:59\" \r\n    -H \"Content-Type: application/json\""
+			},
+			"response": [
+				{
+					"name": "success - Get Notifications by Notification Type, and Between Dates (startDate and endDate)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}api/audit/notifications/search?type=STATUS&startDate=2025-01-01T00:00:00&endDate=2026-01-31T23:59:59",
+							"host": [
+								"{{baseUrl}}api"
+							],
+							"path": [
+								"audit",
+								"notifications",
+								"search"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "STATUS"
+								},
+								{
+									"key": "startDate",
+									"value": "2025-01-01T00:00:00"
+								},
+								{
+									"key": "endDate",
+									"value": "2026-01-31T23:59:59"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 Sep 2025 17:28:43 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"type\": \"STATUS\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            24,\n            13,\n            970405000\n        ],\n        \"status\": \"SUCCESS\"\n    },\n    {\n        \"type\": \"STATUS\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            14,\n            16,\n            933046000\n        ],\n        \"status\": \"SUCCESS\"\n    },\n    {\n        \"type\": \"STATUS\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            13,\n            58,\n            544804000\n        ],\n        \"status\": \"SUCCESS\"\n    },\n    {\n        \"type\": \"STATUS\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            12,\n            54,\n            633672000\n        ],\n        \"status\": \"SUCCESS\"\n    },\n    {\n        \"type\": \"STATUS\",\n        \"userId\": \"user123\",\n        \"message\": \"Your delivery its on its way!\",\n        \"createdAt\": [\n            2025,\n            9,\n            25,\n            14,\n            12,\n            49,\n            984135000\n        ],\n        \"status\": \"SUCCESS\"\n    }\n]"
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080/",
+			"type": "default"
+		}
+	]
+}
