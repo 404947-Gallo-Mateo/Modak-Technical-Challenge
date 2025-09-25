@@ -16,6 +16,8 @@ public class RateLimitConfig {
     private Map<String, RateLimitRule> rules = new HashMap<>();
 
     public RateLimitRule getRuleForType(String type) {
-        return rules.get(type.toLowerCase());
+        RateLimitRule rule = rules.get(type.toLowerCase());
+
+        return new RateLimitRule(rule.getMaxRequests(), rule.getDuration(), rule.getUnit());
     }
 }
