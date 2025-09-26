@@ -54,7 +54,7 @@ Check the Postman Collection 'Modak Rate Limit Challenge.postman_collection.json
 
 | NotificationType | Max Requests | Duration | Time Unit |    
 |------------------|:------------:|:--------:|:----------|
-| STATUS           |      2       |    2     | MINUTES   |  
+| STATUS           |      2       |    1    | MINUTES   |  
 | NEWS             |      1       |    1     | DAYS      |
 | MARKETING        |      3       |    1     | HOURS     |
 | URGENT           |      10      |    1     | MINUTES   |
