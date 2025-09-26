@@ -46,7 +46,7 @@ Check the Postman Collection 'Modak Rate Limit Challenge.postman_collection.json
     # example:
     rate.limit.rules.spam.max-requests=1
     rate.limit.rules.spam.duration=365
-    rate.limit.rules.news.unit=DAYS
+    rate.limit.rules.spam.unit=DAYS
    ```
 --------
 
