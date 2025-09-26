@@ -68,7 +68,7 @@ Check the Postman Collection 'Modak Rate Limit Challenge.postman_collection.json
 
 ## *src ➝ main ➝ ...*
 ### *config*
-> aqui se encuentran las clases de configuracion.
+> Here are defined various configuration classes.
 - *MappersConfig* - Contains configuration for modelMapper, mergerMapper y objetMapper
 - *RateLimitConfig* - Contains RateLimitRules defined in application-dev.properties and a method to access a specific Rule 
 
